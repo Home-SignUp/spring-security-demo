@@ -1,0 +1,12 @@
+server:
+  port: 8090
+spring:
+  mandatory-file-encoding: UTF-8
+  data:
+    mongodb:
+      database: test
+security:
+  ignored: "/readme.txt"
+  basic:
+    enabled: true
+  sessions: stateless

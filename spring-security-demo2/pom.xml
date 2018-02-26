@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.grabduck.demo</groupId>
+    <artifactId>springsecurity2</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.4.2.RELEASE</version>
+    </parent>
+
+    <properties>
+        <java.version>1.8</java.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <!-- эта dependency (spring-boot-starter-security) активирует секюрность внутри приложения -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+
+        <!--https://mvnrepository.com/artifact/org.projectlombok/lombok/1.16.20-->
+        <!-- https://urvanov.ru/2015/06/17/lombok-упрощение-java-кода -->
+        <!-- https://urvanov.ru/2015/09/21/настройка-lombok -->
+        <!-- https://urvanov.ru/2015/09/22/project-lombok -->
+        <!--( https://habrahabr.ru/post/142356 )-->
+        <!--( https://projectlombok.org/features/all )-->
+        <!--( https://itnan.ru/post.php?c=1&p=345520 )-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.16.20</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- http://www.baeldung.com/java-immutable-list -->
+        <!-- https://github.com/google/guava -->
+        <!--( https://www.programcreek.com/java-api-examples/com.google.common.collect.ImmutableList )-->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>24.0-jre</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-freemarker</artifactId>
+        </dependency>
+        <!-- https://springframework.guru/configuring-spring-boot-for-mongo -->
+        <!-- https://github.com/spring-projects/spring-boot/issues/2562 -->
+        <!--( https://medium.com/@raj_adroit/mongodb-enable-authentication-enable-access-control-e8a75a26d332 )-->
+        <!--( https://habrahabr.ru/post/217391 )-->
+        <!--( https://ingini.org/2015/03/26/authentication-authorization-schema-design-with-mongodb )-->
+        <!--( http://www.chocksaway.com/code/2016/07/02/spring-boot-with-web-form-and-mongodb-authentication.html )-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-mongodb</artifactId>
+        </dependency>
+        <!--( https://metanit.com/nosql/mongodb/1.2.php )-->
+        <!--( https://stackoverflow.com/questions/2404742/how-to-install-mongodb-on-windows )-->
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <executable>true</executable>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

@@ -1,0 +1,22 @@
+server:
+  port: 8090
+spring:
+  mandatory-file-encoding: UTF-8
+  data:
+    mongodb:
+#    https://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
+#    http://artem-gryn.net/spring-boot-multiple-mongodb-connections-using-repositories
+      host: localhost
+      port: 27017
+      database: test
+      authentication-database: test
+      username: admin
+      password: 1978
+##      https://stackoverflow.com/questions/39086471/authentication-error-when-accessing-mongodb-through-spring-boot-app
+#      uri: mongodb://admin:1978@localhost:27017/test?authMechanism=SCRAM-SHA-1
+#      uri: mongodb://admin:1978@localhost:27017/socketTimeoutMS=1000&authSource=test # http://sangnak-science.blogspot.com/2016/04/mongodb.authentication.failed.exception.html
+security:
+  ignored: "/readme.txt"
+  basic:
+    enabled: true
+  sessions: stateless
