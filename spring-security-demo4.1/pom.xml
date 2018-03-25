@@ -9,7 +9,7 @@
 
 	<packaging>jar</packaging>
 
-	<name>demo4</name>
+	<name>demo4.1</name>
 	<description>Demo project for Spring Boot</description>
 
 	<parent>
@@ -33,15 +33,6 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-		<!-- этот стартер активирует секюрность внутри приложения -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
 
 		<!-- (это специальный стартер для мониторинга системы) -->
