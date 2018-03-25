@@ -1,0 +1,61 @@
+th {
+    text-align: left
+}
+
+.errormsg {
+    color: red;
+    font-weight: bold;
+}
+
+body.totpLogin{
+    background: linear-gradient(rgb(253, 253, 253), rgb(250, 250, 250));
+}
+.totpLogin *{
+    font-family: Verdana, Arial, sans-serif;
+}
+#documentation{
+    font-size:13px;
+}
+.totpLogin #please_login{
+    border-bottom:1px solid #c6c6c6;
+    padding:10px;
+    font-weight: bold;
+    background: linear-gradient(rgb(201, 206, 210), rgb(177, 182, 186));
+}
+.totpLogin #login_form *{
+    font-size:13.6px !important;
+    font-weight: normal !important;
+}
+.totpLogin #fieldset{
+    padding:0;
+    border-radius: 3px;
+    border: 1px solid #C6C6C6;
+    background-color: rgb(241, 241, 241);
+}
+.totpLogin #login_form{
+    padding:10px;
+}
+.totpLogin #fieldset_contents{
+    width:350px;
+    margin-left:auto;
+    margin-right:auto;
+}
+.totpLogin td{
+    padding-top:10px;
+    padding-bottom: 15px;
+}
+.totpLogin input[type="text"], .totpLogin input[type="password"]{
+    margin-left: 30px;
+}
+.totpLogin #t_logo{
+    width: 45px;
+    position: absolute;
+    right:15px;
+    top: 8px;
+}
+.totpLogin #submit{
+    position: relative;
+    margin-left:auto;
+    margin-right:auto;
+    width:100px;
+}
