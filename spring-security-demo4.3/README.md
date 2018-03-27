@@ -156,4 +156,37 @@ https://github.com/khoubyari/spring-boot-rest-example/tree/master/src/main/java/
 
 https://github.com/spring-guides/tut-spring-security-and-angular-js/issues/121
 
++++++
 
+>> (Spring Boot ** application.yaml) https://www.mkyong.com/spring-boot/spring-boot-profile-based-properties-and-yaml-example/
+                                     https://github.com/khoubyari/spring-boot-rest-example/blob/master/src/main/resources/application.yml
+                                     https://www.mkyong.com/spring-boot/spring-boot-configurationproperties-example/
+                                     http://www.baeldung.com/spring-yaml
+
+(spring boot oauth2)
+
+>> https://vitalflux.com/tutorials-spring-security-oauth2-rest-api/
+   https://github.com/tinmegali/Oauth2-Stateless-Authentication-with-Spring-and-JWT-Token/tree/master/src/main/java/com/tinmegali/security
+   https://github.com/cpapidas/Spring-Boot-OAuth2-JWT-MySQL
+>> http://sivatechlab.com/secure-rest-api-using-spring-security-oauth2-part-4/
+   https://github.com/sivaappavu/crm-oauth2
+   http://sivatechlab.com/secure-rest-api-using-spring-security-oauth2-part-3/
+   http://sivatechlab.com/secure-rest-api-using-spring-security-oauth2/
+>> https://dzone.com/articles/secure-spring-rest-with-spring-security-and-oauth2
+   https://github.com/adamzareba/company-structure-spring-security-oauth2-authorities
+
+https://blogs.perficient.com/delivery/blog/2018/02/07/securing-rest-service-spring-security-oauth2-method/
+https://github.com/spring-projects/spring-security-oauth/blob/master/samples/oauth2/sparklr/src/main/java/org/springframework/security/oauth/examples/sparklr/oauth/SparklrUserApprovalHandler.java
+http://www.littlebigextra.com/spring-boot-oauth2-tutorial-for-authorizing-through-facebook-google-linkedin-and-twitter/
+http://dku.bplaced.net/?p=182
+>> https://code.i-harness.com/ru/q/1c5b5a1
+http://www.java-allandsundry.com/2017/02/using-uaa-oauth2-authorization-server.html
+https://github.com/bijukunjummen/oauth-uaa-sample
+http://www.javainuse.com/spring/spring-boot-oauth-authorization-code
+http://blog.monkey.codes/how-to-use-jwt-and-oauth-with-spring-boot/
+http://mmkay.pl/2017/03/19/spring-boot-saving-oauth2-login-data-in-db-using-principalextractor/
+https://habrahabr.ru/company/nixsolutions/blog/272529/
+https://javadeveloperzone.com/spring-boot/spring-boot-oauth2-jdbc-token-store-example/
+>> https://github.com/jeevan-patil/api-design
+https://www.tristanperry.com/java8/spring/2017/12/23/java8-spring-cloud-microservice-demo.html
+https://www.bountysource.com/issues/29663709-refactor-the-whole-spring-security-configuration-to-use-oauth2-only
