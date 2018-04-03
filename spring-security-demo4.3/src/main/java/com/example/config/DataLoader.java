@@ -1,26 +1,18 @@
 package com.example.config;
 
 import com.example.domain.Employee;
-import com.example.domain.Privilege;
-import com.example.domain.Role;
 import com.example.domain.User;
+import com.example.domain.UserRole;
 import com.example.repository.EmployeeRepository;
-import com.example.repository.PrivilegeRepository;
-import com.example.repository.RoleRepository;
 import com.example.repository.UserRepository;
+import com.example.repository.UserRolesRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
 
 @Component
 public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
@@ -36,14 +28,12 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
     private UserRepository userRepository;
 
     @Autowired
-    private RoleRepository roleRepository;
+    private UserRolesRepository userRolesRepository;
 
-    @Autowired
-    private PrivilegeRepository privilegeRepository;
-
-//    @Autowired
-//    private PasswordEncoder passwordEncoder;
-
+    /**
+     * User #1:  (priya|priya) - ограниченный доступ
+     * User #2:  (naveen|naveen) - открытый доступ
+     */
     @Override
     @Transactional
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
@@ -56,60 +46,37 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         employeeRepository.save(new Employee("Jim ", "Morrison", false));
         employeeRepository.save(new Employee("David", "Gilmour", true));
 
-        // == create initial privileges
-        final Privilege readPrivilege = createPrivilegeIfNotFound("READ_PRIVILEGE");
-        final Privilege writePrivilege = createPrivilegeIfNotFound("WRITE_PRIVILEGE");
-        final Privilege passwordPrivilege = createPrivilegeIfNotFound("CHANGE_PASSWORD_PRIVILEGE");
+        userRepository.save(
+                getNewUser(1l, "priya", "$2a$04$CO93CT2ObgMiSnMAWwoBkeFObJlMYi/wzzOnPlsTP44r7qVq0Jln2", "abc@abc.com", 1));
+        userRepository.save(
+                getNewUser(2l, "naveen", "$2a$04$j3JpPUp6CTAe.kMWmdRNC.Wie58xDNPfcYz0DBJxWkucJ6ekJuiJm", "def@def.com", 1));
 
-        // == create initial roles
-        final List<Privilege> adminPrivileges = new ArrayList<Privilege>(Arrays.asList(readPrivilege, writePrivilege, passwordPrivilege));
-        final List<Privilege> userPrivileges = new ArrayList<Privilege>(Arrays.asList(readPrivilege, passwordPrivilege));
-        final Role adminRole = createRoleIfNotFound("ROLE_ADMIN", adminPrivileges);
-        createRoleIfNotFound("ROLE_USER", userPrivileges);
-
-        // == create initial user
-        createUserIfNotFound("test@test.com", "Test", "Test", "test", new ArrayList<Role>(Arrays.asList(adminRole)));
+        userRolesRepository.save(getNewUserRole(101l, "ROLE_USER", 1l));
+        userRolesRepository.save(getNewUserRole(102l, "ROLE_ADMIN", 2l));
+        userRolesRepository.save(getNewUserRole(103l, "ROLE_USER", 2l));
 
         logger.info("The sample data has been generated");
         alreadySetup = true;
     }
 
-
     @Transactional
-    private final Privilege createPrivilegeIfNotFound(final String name) {
-        Privilege privilege = privilegeRepository.findByName(name);
-        if (privilege == null) {
-            privilege = new Privilege(name);
-            privilege = privilegeRepository.save(privilege);
-        }
-        return privilege;
-    }
-
-    @Transactional
-    private final Role createRoleIfNotFound(final String name, final Collection<Privilege> privileges) {
-        Role role = roleRepository.findByName(name);
-        if (role == null) {
-            role = new Role(name);
-        }
-        role.setPrivileges(privileges);
-        role = roleRepository.save(role);
-        return role;
-    }
-
-    @Transactional
-    private final User createUserIfNotFound(final String email, final String firstName, final String lastName, final String password, final Collection<Role> roles) {
-        User user = userRepository.findByEmail(email);
-        if (user == null) {
-            user = new User();
-            user.setFirstName(firstName);
-            user.setLastName(lastName);
-            user.setPassword(password); //user.setPassword(passwordEncoder.encode(password));
-            user.setEmail(email);
-            user.setEnabled(true);
-        }
-        user.setRoles(roles);
-        user = userRepository.save(user);
+    private final User getNewUser(Long id, String userName, String password, String email, int enabled) {
+        User user = new User();
+        user.setId(id);
+        user.setUserName(userName);
+        user.setEmail(email);
+        user.setPassword(password);
+        user.setEnabled(enabled);
         return user;
+    }
+
+    @Transactional
+    private final UserRole getNewUserRole(Long id, String role, Long userId) {
+        UserRole userRole = new UserRole();
+        userRole.setId(id);
+        userRole.setRole(role);
+        userRole.setUserId(userId);
+        return userRole;
     }
 
 }

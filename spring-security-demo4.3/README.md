@@ -111,6 +111,34 @@ or choose: `File | Settings | Editor | File Encodings`
 
 
 
+## Этот пример демонстрирует загрузку данных пользователя для Spring-Security из базы данных
+
+Здесь важны 3-основных момента:
+1. **(** как обычно, реализуем `Entity` и `Repository` чтобы доставать данные пользователя из базы + создаем 2-таблички где будут хранится данные пользователя и его роли... **)**
+2. создаем свою реализацию для сущности `UserDetails` - чтобы получать данные пользователя из своей базы...
+3. создаем свою реализацию для сервиса `UserDetailsService` (а именно, метод `loadUserByUsername`) - чтобы потом передать эти данные в Spring-Security...
+4. **(** предварительно настраиваем дрступ к ресурсам в Spring-Security `WebMvcConfigurerAdapter`, а именно метод `addViewControllers()`... **)**
+5. и передаем данные пользователя в менеджер Spring-Security (`WebSecurityConfigurerAdapter`), а именно в методе `configAuthentication()`...
+6. **(** ...в этом примере нет REST-контроллеров, здесь используются статические веб-ресурсы... - по умолчанию JSP-файлы **)**
+
+![user_roles](user_roles.png)
+
+```properties
+##### PostgreSQL
+################### DataSource Configuration ##########################
+spring.datasource.driverClassName=org.postgresql.Driver
+spring.datasource.url=jdbc:postgresql://localhost:5432/userbase
+spring.datasource.username=postgres
+spring.datasource.password=postgres
+spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
+spring.jpa.show-sql=true
+
+##### Hibernate
+spring.jpa.hibernate.ddl-auto=update
+```
+
+
+
 
 
 
@@ -127,66 +155,4 @@ https://docs.spring.io/spring-security/site/docs/current/guides/html5/helloworld
 https://stackoverflow.com/questions/31134333/this-application-has-no-explicit-mapping-for-error
 
 
-=====
 
-http://www.baeldung.com/spring-security-two-factor-authentication-with-soft-token
-
-https://github.com/Home-SignUp/spring-security-demo/tree/master/spring-security-demo4/src/main/java/com/example/config
-
-https://github.com/J2EE-Secirity/spring-security-registration/tree/master/src/main/java/org/baeldung/config
-
-https://github.com/J2EE-Secirity/TOTP-spring
-
->> https://www.javacodegeeks.com/2015/10/spring-boot-oauth2-security.html
-   https://github.com/rajithd/spring-boot-oauth2
-   https://www.youtube.com/watch?v=0pD7YeTAUkk
-
->> http://www.swisspush.org/security/2016/10/17/oauth2-in-depth-introduction-for-enterprises
-   https://github.com/exteso/oauth2-step-by-step
-
->> http://projects.spring.io/spring-security-oauth/docs/oauth2.html
-
->> https://jugbd.org/2017/09/19/implementing-oauth2-spring-boot-spring-security/
-
-https://www.youtube.com/watch?v=Tq9pY8hPjTk
-
-https://github.com/esurovtsev/spring-security-demo/tree/003-custom-user-details-service/src/main
-
-https://github.com/khoubyari/spring-boot-rest-example/tree/master/src/main/java/com/khoubyari/example/dao/jpa
-
-https://github.com/spring-guides/tut-spring-security-and-angular-js/issues/121
-
-+++++
-
->> (Spring Boot ** application.yaml) https://www.mkyong.com/spring-boot/spring-boot-profile-based-properties-and-yaml-example/
-                                     https://github.com/khoubyari/spring-boot-rest-example/blob/master/src/main/resources/application.yml
-                                     https://www.mkyong.com/spring-boot/spring-boot-configurationproperties-example/
-                                     http://www.baeldung.com/spring-yaml
-
-(spring boot oauth2)
-
->> https://vitalflux.com/tutorials-spring-security-oauth2-rest-api/
-   https://github.com/tinmegali/Oauth2-Stateless-Authentication-with-Spring-and-JWT-Token/tree/master/src/main/java/com/tinmegali/security
-   https://github.com/cpapidas/Spring-Boot-OAuth2-JWT-MySQL
->> http://sivatechlab.com/secure-rest-api-using-spring-security-oauth2-part-4/
-   https://github.com/sivaappavu/crm-oauth2
-   http://sivatechlab.com/secure-rest-api-using-spring-security-oauth2-part-3/
-   http://sivatechlab.com/secure-rest-api-using-spring-security-oauth2/
->> https://dzone.com/articles/secure-spring-rest-with-spring-security-and-oauth2
-   https://github.com/adamzareba/company-structure-spring-security-oauth2-authorities
-
-https://blogs.perficient.com/delivery/blog/2018/02/07/securing-rest-service-spring-security-oauth2-method/
-https://github.com/spring-projects/spring-security-oauth/blob/master/samples/oauth2/sparklr/src/main/java/org/springframework/security/oauth/examples/sparklr/oauth/SparklrUserApprovalHandler.java
-http://www.littlebigextra.com/spring-boot-oauth2-tutorial-for-authorizing-through-facebook-google-linkedin-and-twitter/
-http://dku.bplaced.net/?p=182
->> https://code.i-harness.com/ru/q/1c5b5a1
-http://www.java-allandsundry.com/2017/02/using-uaa-oauth2-authorization-server.html
-https://github.com/bijukunjummen/oauth-uaa-sample
-http://www.javainuse.com/spring/spring-boot-oauth-authorization-code
-http://blog.monkey.codes/how-to-use-jwt-and-oauth-with-spring-boot/
-http://mmkay.pl/2017/03/19/spring-boot-saving-oauth2-login-data-in-db-using-principalextractor/
-https://habrahabr.ru/company/nixsolutions/blog/272529/
-https://javadeveloperzone.com/spring-boot/spring-boot-oauth2-jdbc-token-store-example/
->> https://github.com/jeevan-patil/api-design
-https://www.tristanperry.com/java8/spring/2017/12/23/java8-spring-cloud-microservice-demo.html
-https://www.bountysource.com/issues/29663709-refactor-the-whole-spring-security-configuration-to-use-oauth2-only

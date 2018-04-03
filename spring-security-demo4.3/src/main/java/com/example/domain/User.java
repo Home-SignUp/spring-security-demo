@@ -1,94 +1,80 @@
 package com.example.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
-import java.util.Collection;
+import java.io.Serializable;
 
 @Entity
-@Table(name = "user_account")
-public class User {
+@Table(name = "users")
+public class User implements Serializable {
 
-    @Id
-    @Column(unique = true, nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+	private static final long serialVersionUID = 1L;
+
+	@Id
+    @GeneratedValue(strategy = GenerationType.AUTO)    
+    @Column(name = "id")
     private Long id;
 
-    private String firstName;
+	@Column(name = "username")
+    private String userName;   
 
-    private String lastName;
+	@Column(name = "password")
+    private String password;   
 
+	@Column(name = "email")
     private String email;
+    
+	@Column(name = "enabled")
+	private int enabled;
+	
+	public User() {
+	}
 
-    @Column(length = 60)
-    private String password;
+	public User(User user) {
+	        this.id = user.id;
+	        this.userName = user.userName;
+	        this.email = user.email;       
+	        this.password = user.password;
+	        this.enabled = user.enabled;
+	}
 
-    private boolean enabled;
+	public int getEnabled() {
+		return enabled;
+	}
 
-    @JsonIgnore
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
-    private Collection<Role> roles;
+	public void setEnabled(int enabled) {
+		this.enabled = enabled;
+	}	
 
-    public User() {
-        super();
-        this.enabled = false;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public Long getId() {
-        return id;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
+	public String getPassword() {
+		return password;
+	}
 
-    public void setId(final Long id) {
-        this.id = id;
-    }
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
+	public String getEmail() {
+		return email;
+	}
 
-    public String getFirstName() {
-        return firstName;
-    }
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-    public void setFirstName(final String firstName) {
-        this.firstName = firstName;
-    }
+	public String getUserName() {
+		return userName;
+	}
 
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(final String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(final String username) {
-        this.email = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(final String password) {
-        this.password = password;
-    }
-
-    public Collection<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(final Collection<Role> roles) {
-        this.roles = roles;
-    }
-
-    public boolean isEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(final boolean enabled) {
-        this.enabled = enabled;
-    }
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 
 }
